@@ -44,7 +44,7 @@ def main():
                      "footnotes": footnotes,}
                     )
             except Exception as e:
-                print "Got an exception(", e, ") processing this line:", author_line
+                print ("Got an exception({}) processing this line: {}".format(e, author_line))
                 raise
     #print author_list
     
