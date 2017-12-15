@@ -10,13 +10,32 @@ import os
 import re
 import sys
 
+def cmp_to_key(mycmp):
+    'Convert a cmp= function into a key= function'
+    class K:
+        def __init__(self, obj, *args):
+            self.obj = obj
+        def __lt__(self, other):
+            return mycmp(self.obj, other.obj) < 0
+        def __gt__(self, other):
+            return mycmp(self.obj, other.obj) > 0
+        def __eq__(self, other):
+            return mycmp(self.obj, other.obj) == 0
+        def __le__(self, other):
+            return mycmp(self.obj, other.obj) <= 0
+        def __ge__(self, other):
+            return mycmp(self.obj, other.obj) >= 0
+        def __ne__(self, other):
+            return mycmp(self.obj, other.obj) != 0
+    return K
+
 def main():
     author_file = "authors.txt"
     footnote_file = "footnotes.txt"
     affiliation_address_file = "address.txt"
     
     # Open and process the authors file
-    with open(author_file) as author_fh:
+    with open(author_file, encoding='utf-8') as author_fh:
         author_list = []
         for author_line in author_fh:
             author_line = author_line.strip()
@@ -50,7 +69,7 @@ def main():
     
     # Generate the map to people's institutes
     institute_address = {}
-    with open(affiliation_address_file) as address_fh:
+    with open(affiliation_address_file, encoding='utf-8') as address_fh:
         for affiliation_line in address_fh:
             affiliation_line = affiliation_line.strip()
             if affiliation_line.startswith("#") or affiliation_line == "":
@@ -70,13 +89,12 @@ def main():
     #print affiliation_map        
     
     # Alphabetise and assign footnote marks
-    sorted_affiliations = affiliation_map.keys()[:]
-    sorted_affiliations.sort()
+    sorted_affiliations = sorted(affiliation_map)
     for footnote_mark, affiliation in enumerate(sorted_affiliations, start=1):
         affiliation_map[affiliation]["footnotemark"] = str(footnote_mark)
     
     # Parse and assign footnotes
-    with open(footnote_file) as footnote_fh:
+    with open(footnote_file, encoding='utf-8') as footnote_fh:
         footnote_map = {}
         footnote_symbols = "abcdefghijklmnopqrstuvwxyz"
         footnotemark_index = 0
@@ -91,8 +109,8 @@ def main():
                 "footnotemark": footnote_symbols[footnotemark_index],
                 }
             footnotemark_index += 1
-    sorted_footnotes = footnote_map.keys()[:]
-    sorted_footnotes.sort(cmp=lambda x,y: cmp(int(x), int(y)))
+    sorted_footnotes = sorted(footnote_map)
+    sorted_footnotes.sort()
     #print footnote_map
         
         
@@ -103,8 +121,11 @@ def main():
             if author["footnotes"]:
                 footnote_list = ",".join( [ footnote_map[footnote]["footnotemark"] for footnote in author["footnotes"] ])
                 affiliation_list = affiliation_list + "," + footnote_list
-            print >>output, author["surname"] +", "  + \
-            author["forename"] + "$^{" + affiliation_list + "}$" +\
+            print >>output, ("{}, {} $^\{{}\}$".format(author["surname"],
+                                                       author["forename"],
+                                                       affiliation_list,
+                                                       if author == author_list[-1] else ";")
+                            + "$^{" + affiliation_list + "}$" +\
             ("" if author == author_list[-1] else ";")
             #if author["role"]:
             #    print >>output, "(" + author["role"] + ")"
