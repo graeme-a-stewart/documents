@@ -11,8 +11,8 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage[style=numeric-comp,sorting=none]{biblatex}
-\addbibresource{cwp.bib}
-\addbibresource{cwp-chapters.bib}
+\addbibresource{../../roadmap/latex/cwp.bib}
+\addbibresource{../../roadmap/latex/cwp-chapters.bib}
 
 %% Comment out before final submission
 \usepackage{lineno}  % for line numbering during review
@@ -22,14 +22,15 @@
 many tens of millions of lines of code and to integrate effectively the
 work of thousands of developers across large collaborations. 
 Software needs to be built, validated, and deployed across hundreds of
-sites. As software also has a lifetime of many years, frequently beyond that
+sites. Software also has a lifetime of many years, frequently beyond that
 of the original developer, it must be developed with sustainability in
 mind. Adequate recognition of software development as a critical task in the HEP
 community needs to be fostered and an appropriate publication and citation
 strategy needs to be developed. As part of the HEP Softare Foundation's
 Community White Paper process a working group on Software Development,
-Deployment and Validation/Verification was formed and its report, recommending
-best practice for the next decade, is presented here.}
+Deployment and Validation was formed to examine all of these
+issues, identify best practice and to formulare recommendations for the next
+decade. Its report is presented here.}
 
 \begin{document}
 
@@ -42,7 +43,7 @@ best practice for the next decade, is presented here.}
 \vspace{2.0cm}
 
 \title{HEP Software Foundation Community White Paper Working Group -- Software
-Development, Deployment and Validation/Verification}
+Development, Deployment and Validation}
 
 \author{HEP Software Foundation:}
 \author[a]{Benjamin Couturier}
@@ -111,7 +112,7 @@ for the following areas:
   \item
     Recognition of the significant contribution that software makes to
   High Energy Physics as a field.
-  \end{itemize}
+\end{itemize}
 
 The goal of this document is to highlight the challenges the field will
 face in the next 5 to 10 years, and to provide a strategy on how address
@@ -158,7 +159,7 @@ Principle areas of challenge are:
   \item
     For the same reason, we need to minimize the time required for people
   to begin to contribute effectively.
-  \end{itemize}
+\end{itemize}
 
 \paragraph{Knowledge sharing}
 
@@ -176,7 +177,7 @@ Principle areas of challenge are:
     There is an historical and stubborn compartmentalization between
   different experiments, so propagating knowledge horizontally across
   experiments is particularly hard.
-  \end{itemize}
+\end{itemize}
 
 \paragraph{Reusing code effectively}
 
@@ -190,7 +191,7 @@ Principle areas of challenge are:
   identify success stories and make sure they can be extended (if
   needed) and advertised as possible general solutions, thus avoiding
   duplicate efforts or developments.
-  \end{itemize}
+\end{itemize}
 
 \paragraph{Validation of complex output}
 
@@ -200,7 +201,7 @@ Principle areas of challenge are:
   inputs from highly specialized experts and unique sources, is hard to
   do, especially taking into account stochastic processes and long
   tails.
-  \end{itemize}
+\end{itemize}
 
 \paragraph{Data, code and knowledge preservation}
 
@@ -208,7 +209,7 @@ Principle areas of challenge are:
 \item
     Long term maintainability of the code to handle data that was obtained
   decades before as required by the lifetime of a HEP experiment.
-  \end{itemize}
+\end{itemize}
 
 \paragraph{Code lifecycle and deprecation}
 
@@ -222,7 +223,7 @@ Principle areas of challenge are:
   and provoking crises when abandoned upstream libraries start to fail
   to build. Thus the need to engage in effective, smooth and continuous
   lifecycle management of code is important.
-  \end{itemize}
+\end{itemize}
 
 \paragraph{Hardware and software evolution}
 
@@ -242,7 +243,7 @@ Principle areas of challenge are:
   the HEP community. These can provide significant advantages in
   exploiting new hardware or aiding efficient distributed development
   and such technologies need to be tracked, investigated and deployed.
-  \end{itemize}
+\end{itemize}
 
 \paragraph{Software deployment}
 
@@ -253,10 +254,10 @@ Principle areas of challenge are:
   including the gamut of academic and commercial cloud services, there
   is a challenge to uniformly provide the appropriate software in all of
   these environments. End user analysis code also needs to be managed
-  and distributed into these environments. CVMFS has been hugely
+  and distributed into these environments. CVMFS\cite{7310920} has been hugely
   successful here, however it does not cover all cases and a viable
   common solution may emerge and be adopted more widely.
-  \end{itemize}
+\end{itemize}
 
 \paragraph{Recognition of software development}
 
@@ -265,16 +266,16 @@ Principle areas of challenge are:
     Writing high quality software is a skilled activity that greatly
   contributes to the success of the field. Ensuring that software
   developers receive recognition for their contributions will help
-  retain people in the field and help their career development.~
-  \end{itemize}
+  retain people in the field and help their career development.
+\end{itemize}
 
 \hypertarget{meeting-the-challenges}{%
 \section{Meeting the Challenges}\label{meeting-the-challenges}}
 
 The previous section introduced a brief summary of the main challenges
-this working group has identified. ~In the next paragraphs we both
+this working group has identified. In the next paragraphs we both
 expand on these and identify viable existing solutions and areas where
-more investigation is required.~
+more investigation is required.
 
 \hypertarget{effective-use-of-developer-effort}{%
 \subsection{Effective use of developer
@@ -299,8 +300,7 @@ can be accompanied by demonstrator or prototype code to better
 illustrate the purpose of the of the changes. This approach allows
 documentation and testing to be incorporated into the development itself
 and not left as an afterthought. This model was used by the Concurrency
-Forum in the past
-(\href{http://concurrency.web.cern.ch/}{{http://concurrency.web.cern.ch/}})
+Forum~\cite{ConcurrencyForum} in the past
 and was very successful in selecting the most promising approaches for
 the community and disseminating knowledge amongst different experiments.
 
@@ -347,11 +347,11 @@ including independence from central services and greater freedom to
 experiment. Finished code enhancements can be proposed using a
 pull-request workflow so that high quality contributions are made with
 the central repository receiving pristine patches. We note that the
-community has generally chosen to move to git. This standardization is
-very welcome as it also brings an alignment with many open source
+community has generally chosen to move to git~\cite{git}. This standardization
+is very welcome as it also brings an alignment with many open source
 projects and commercial organizations.
 
-The HEP current community is widely using CMake for the builds of
+The HEP current community is widely using CMake~\cite{CMake} for the builds of
 software packages. This is an open-source system dedicated to build,
 test, and install software which includes the specific build
 specifications for each particular package in a platform independent
@@ -363,14 +363,15 @@ code, though at the moment probably the best use is not yet made of this
 feature in our community. CMake can orchestrate the builds of large
 numbers of packages (e.g., the LCG releases of over 300 packages) but
 can become quite specific when doing so and thus more limited. The HSF
-Packaging group found Spack
-(\href{http://hepsoftwarefoundation.org/notes/HSF-TN-2016-03.pdf}{{HSF-TN-2016-03,
-HSF Packaging Working Group Report}}) to be a promising more general
-solution for the task of building an HEP software stack, however, it
+Packaging group found
+Spack~\cite{HSF-TN-2016-03,Gamblin:2015:SPM:2807591.2807623}
+to be a promising
+more general solution for the task of building an HEP software stack, however, it
 currently has a relatively small user base, centered on HPC, and might
 just become a niche product with little traction in the wider
-development community. More generic tools, such as Homebrew or Conda are
-interesting but may not have all the features needed by HEP experiments.
+development community. More generic tools, such as Homebrew\cite{Homebrew} or
+Conda~\cite{Conda} are interesting but may not have all the features needed by
+HEP experiments.
 Thus this area still requires close attention to active developments in
 the open source world.
 
@@ -404,7 +405,7 @@ development tools, can be particularly valuable for novice coders. They
 provide support for developers in navigating the code base as well as
 catching elementary errors. It would be of great benefit for the
 community to ensure that standard project templates
-(\href{https://github.com/HEP-SF/tools}{{HSF Project Template}}) work
+(e.g., HSF Project Template~\cite{HSFProjectTemplate}) work
 with minimal configuration with standard IDEs, such as Eclipse, XCode,
 KDevelop, Qt Creator, etc. For large experiment code bases, the scaling
 of these IDEs to many millions of lines requires investigation.
@@ -419,9 +420,9 @@ productivity.
 The advantages of social coding sites are that they allow developers to
 share and discuss code through very streamlined and highly functional
 web interfaces. Distributed version control systems are key enablers for
-these sites. There are commercial choices, such as GitHub or BitBucket
+these sites. There are commercial choices, such as GitHub or BitBucket %REF?
 that can serve a community well; alternatively a privately hosted
-service, such as CERN's GitLab instance, may mesh more easily with other
+service, such as CERN's GitLab instance, may mesh more easily with other %REF?
 related services, however ``bridging'' code can be developed and shared
 in the community allowing integration across such different service
 platforms. Smaller projects would probably benefit from the increased
@@ -444,7 +445,7 @@ policy checks that will help improve the consistency and quality of code
 at low human cost.
 
 For running continuous integration and build orchestration many options
-exist (Jenkins, Gitlab CI, Travis, Bamboo) and the particular choice of
+exist (Jenkins, Gitlab CI, Travis, Bamboo) and the particular choice of %REF?
 which one to use is a relatively pragmatic decision, with only a very
 limited impact on the ability to cooperate around software.
 
@@ -510,7 +511,7 @@ retrospective:
     Assign action points. Based on the pain points discussed, assign
   action items that are small enough in scope that they can be resolved
   before the next retrospective.
-  \end{itemize}
+\end{itemize}
 
 This setting of information sharing and collaboration can yield clear
 productivity benefits. For example, it is possible that a developer
@@ -540,12 +541,12 @@ translates the sources into modern web pages. An example would be using
 the Jekyll engine, as the main HSF website currently does or using
 services such as Read The Docs.
 
-Traditionally HEP has often used Doxygen for reference documentation,
-especially given its emphasis on C++. New documentation tools are also
+Traditionally HEP has often used Doxygen\cite{Doxygen} for reference
+documentation, especially given its emphasis on C++. New documentation tools are also
 available that integrate Doxygen with better solutions in other
-languages, e.g., the python Sphinx documentation tool can use Breathe to
-integrate C++ and python documentation. Sites such as Read The Docs also
-take much of the pain out of producing an attractive documentation site.
+languages, e.g., the python Sphinx documentation tool~\cite{Sphinx} can use
+Breathe~\cite{breathe} to integrate C++ and python documentation. Sites such as
+Read The Docs also take much of the pain out of producing an attractive documentation site.
 
 \hypertarget{training}{%
 \subsubsection{Training}\label{training}}
@@ -568,7 +569,7 @@ As much use as possible should be made of generic resources that already
 exist; there is a role here for the HSF to curate useful training
 materials (where their ongoing usefulness and validity needs to be
 managed) and encourage cooperation with other training initiatives, such
-as Software Carpentry.
+as Software Carpentry~\cite{SoftwareCarpentry}.
 
 \hypertarget{seminars-and-discussion-forums}{%
 \subsubsection{Seminars and discussion
@@ -576,9 +577,9 @@ forums}\label{seminars-and-discussion-forums}}
 
 These are important to the community, in particular to discuss new
 technologies or tools at an early stage of development. A good example
-is the \href{https://indico.cern.ch/category/7857/}{{Software Technology
-Forum}}.~These forums also allow questions to be posed about problems
-that are encountered and identifying existing software that may provide
+is the Software Technology
+Forum~\cite{SoftwareTechForum}. These forums also allow questions to be posed
+about problems that are encountered and identifying existing software that may provide
 a solution (thus avoiding re-inventing the wheel yet again).
 
 In terms of knowledge sharing among developers, solutions such
@@ -600,7 +601,7 @@ is probably some reluctance to pose questions to a wide list. Though
 being a fast and attractive solution for discussions about a particular
 issue it is not a via for the long term and broad knowledge sharing.
 There may be some use in trying alternatives, such as a Slack channel,
-at least to prototype with low investment.~
+at least to prototype with low investment.
 
 \hypertarget{workshops-and-community-reviews}{%
 \subsubsection{Workshops and community
@@ -613,10 +614,10 @@ an environment in which people can meet and interact. The HSF has also
 organized community meetings on aspects of future HEP software
 development that are of particular interest to the community in a
 strategic sense. Two such meetings have been organized so far: one on
-Geant V simulation, and the other on the analysis ecosystem. These
-meetings can provide very valuable feedback to developers on the
-priorities of the experiments and the most critical features to develop
-and support. Organizing further meetings on such topics provides
+Geant V simulation\cite{HSF-GeantV-Report}, and the other on the analysis
+ecosystem~\cite{HSF-Analysis-Report}. These meetings can provide very valuable
+feedback to developers on the priorities of the experiments and the most
+critical features to develop and support. Organizing further meetings on such topics provides
 important strategic feedback on development.
 
 \hypertarget{conferences}{%
@@ -643,9 +644,9 @@ Proper recognition of software work as a key part of science has
 resulted in number of new journals where developers can publish their
 work. Journals also disseminate information to the wider community in a
 permanent way. There is a very useful
-\href{https://www.software.ac.uk/which-journals-should-i-publish-my-software}{{list
-of such journals}} curated by the Software Sustainability Institute. The
-HSF itself has prompted the founding of one additional journal,
+list of such journals curated by the Software Sustainability
+Institute~\cite{SSI2017}.
+The HSF itself has prompted the founding of one additional journal,
 \emph{Computing and Software for Big Science}, but the main issue in our
 field is more one of encouraging publication rather than founding new
 journals. Publication in such journals provides proper peer review,
@@ -703,11 +704,10 @@ source licenses fall into various categories
     Permissive licenses (Apache, MIT, BSD) generally allow for public
   modifications to be made without requiring them to be released under
   the same terms as the original code.
-  \end{itemize}
+\end{itemize}
 
-There is a modern report from the HSF on licensing topics
-(\href{http://hepsoftwarefoundation.org/notes/HSF-TN-2016-01.pdf}{{HSF-TN-2016-01,
-Software Licence Agreements HSF Policy Guidelines}}) and we do not
+There is a modern report from the HSF on licensing 
+topics~\cite{HSF-TN-2016-01} and we do not
 repeat the discussion here. Instead we encourage code authors to ensure
 that copyright and license for code is well established at the beginning
 of the project, including the status of contributions to the code. The
@@ -715,7 +715,7 @@ implications of the chosen license should be properly understood,
 especially in so far as it affects contributors to the code base and
 users of the code who may incorporate it into a larger software stack,
 together with their own code (the GPL has a fairly profound effect in
-this regard).~
+this regard).
 
 \hypertarget{validation-of-complex-outputs}{%
 \subsection{Validation of complex
@@ -762,7 +762,7 @@ inferior home grown implementations and achieving some uniformity in the
 community will help for longer term support issues when they arise.
 
 For further details on this topic we refer to the Data Preservation CWP
-group.
+group~\cite{HSF-CWP-2017-06}.
 
 \hypertarget{code-deprecation}{%
 \subsection{Code deprecation}\label{code-deprecation}}
@@ -786,8 +786,7 @@ a hard problem, but with the development of Clang and full knowledge of
 the abstract syntax tree (AST) of the code, there are significant
 possibilities for using this knowledge to tackle much of the drudge work
 of refactoring. There have been successful examples of using Clang in
-this way
-(\href{https://research.google.com/pubs/pub41342.html}{{https://research.google.com/pubs/pub41342.html}})
+this way~\cite{ClangMR41342}
 and we believe this is an area where investment could be very profitable
 both specifically for HEP and as a contribution to the wider open source
 community. Tools to further help validate the updated code can be shared
@@ -824,9 +823,9 @@ Many specific details of parallel architectures can be masked by the
 adoption of appropriate libraries. Generally HEP problems fit better
 into a task based scheduling pattern, rather than to an optimizer of
 kernels run in tight loops. The community has utilized Intel's Threaded
-Building Blocks (TBB) successfully in many areas. Should TBB continue to
-develop and be a good fit for our problems this common solution also
-helps solve the problem of resource balancing between different parts of
+Building Blocks (TBB)~\cite{Pheatt:2008:ITB:1352079.1352134,TBB} successfully in
+many areas. Should TBB continue to develop and be a good fit for our problems
+this common solution also helps solve the problem of resource balancing between different parts of
 the code. Should the solutions adopted become fragmented then overall
 resource balancing becomes much harder and may become difficult to
 solve. Evolution of the C++ standard will most likely bring more
@@ -863,8 +862,9 @@ cache trashing effect known as ``false sharing''). These differences can
 be abstracted away through use of data structure generation mechanisms,
 which are still in their early days but begin to be offered by some
 programming environments such as
-\href{https://github.com/kokkos/kokkos}{{Kokkos}}, and some DSLs such as
-those used in the context of the HESS \& CTA reconstructions.
+Kokkos~\cite{CarterEdwards20143202},
+and some DSLs such as those used in the context of the HESS and Cherenkov Telescope Array
+reconstructions.
 
 \hypertarget{tracking-of-new-software-technologies-and-tools}{%
 \subsubsection{Tracking of new software technologies and
@@ -916,9 +916,8 @@ and more sites could be involved in this activity.
 \subsection{Software deployment}\label{software-deployment}}
 
 Deployment of HEP software has been revolutionized by the widespread
-adoption of CERN Virtual Machine File System (CVMFS,
-\href{https://cernvm.cern.ch/portal/filesystem}{{https://cernvm.cern.ch/portal/filesystem}}
-{[}Blomer2014{]}) for flexible and ubiquitous access to a common
+adoption of CERN Virtual Machine File System (CVMFS)~\cite{7310920}
+for flexible and ubiquitous access to a common
 filesystem namespace with efficient distribution of content that can be
 strongly cached at multiple levels. We expect that CVMFS will remain the
 mainstay of software distribution to most computing sites in the
@@ -954,8 +953,7 @@ field. As an academic discipline, HEP primarily recognizes publications
 in refereed academic journals and the citations of those publications as
 indicators of merit. Therefore we strongly encourage authors of software
 to submit publications of that software to such journals, of which there
-are now many
-(\href{https://www.software.ac.uk/which-journals-should-i-publish-my-software}{{https://www.software.ac.uk/which-journals-should-i-publish-my-software}}).
+are now many~\cite{SSI2017}.
 It is also equally important that publications from the field
 appropriately cite the software that they have used.
 
@@ -985,10 +983,10 @@ other journals without extended content. Software authors should be
 aware of these issues when deciding where best to publish.
 
 There are also now interesting projects to directly publish software
-itself, for example to \href{http://zenodo.org}{{Zenodo}} or
-\href{https://figshare.com}{{figshare}}, as has been recommended by the
-\href{https://www.force11.org/group/software-citation-working-group}{{FORCE11
-Software Citation Working Group}} {[}Smith2016{]}. We are very
+itself, for example to Zenodo~\cite{Zenodo} or
+figshare\cite{figshare}, as has been recommended by the
+FORCE11
+Software Citation Working Group~\cite{FORCE11}. We are very
 encouraging of such efforts, and believe it would be useful for HEP
 software authors to participate, but at the moment the actual
 recognition accrued from such a publication is unclear. Through its work
@@ -1040,12 +1038,11 @@ activities)}\label{short-term-projects-1-2-years-and-ongoing-activities}}
 \item
     Establish a common forum for the discussion of HEP software problems.
   This should be modeled along the lines of the Concurrency Forum
-  (\href{http://concurrency.web.cern.ch/}{{http://concurrency.web.cern.ch/}})
   which was very successful in establishing demonstrators and prototypes
   that were used as experiments started to develop multi-threading
   frameworks.
   \item
-    Continue the HSF working group on packaging, with more prototype
+  Continue the HSF working group on packaging, with more prototype
   implementations based on the stronger candidates identified so far.
   \item
     Provide practical advice on how to best set up new software packages,
@@ -1057,8 +1054,8 @@ activities)}\label{short-term-projects-1-2-years-and-ongoing-activities}}
   be experiment neutral, but could be usefully combined with the current
   experiment specific training. Specifically this work can build on and
   collaborate with recent highly successful initiatives like the LHCb
-  StarterKit and ALICE Juniors and with established generic training
-  initiatives such as Software Carpentry.
+  StarterKit~\cite{1742-6596-898-8-082054} and ALICE Juniors~\cite{ALICEJuniors}
+  and with established generic training initiatives such as Software Carpentry.
   \item
     Strengthen links with software communities and conferences outside of
   the HEP domain, presenting papers on the HEP experience and problem
@@ -1069,7 +1066,7 @@ activities)}\label{short-term-projects-1-2-years-and-ongoing-activities}}
     Write a paper that looks at case studies of successful and
   unsuccessful HEP software developments and draws specific conclusions
   and advice for future projects.
-  \end{itemize}
+\end{itemize}
 
 \hypertarget{medium-term-projects-3-5-years}{%
 \subsection{Medium term projects (3-5
@@ -1098,11 +1095,16 @@ years)}\label{medium-term-projects-3-5-years}}
     Undertake a feasibility study of a common toolkit for statistical
   analysis that would be of use in regression testing for experiment's
   simulation and reconstruction software.
-  \end{itemize}
+\end{itemize}
 
 It would be highly beneficial for the group to continue to function,
 through the means of the forum proposed above, and to have at least one
 meeting a year devoted to reviewing our activities and updating our
 knowledge of best tools and practices.
+
+\sloppy
+\raggedright
+\clearpage
+\printbibliography[title={References},heading=bibintoc]
 
 \end{document}
